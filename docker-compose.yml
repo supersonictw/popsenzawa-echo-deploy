@@ -1,0 +1,47 @@
+version: "2.2"
+services:
+    manage:
+        image: node
+        container_name: vhs-manage
+        volumes:
+            - ./public/manage:/tmp/build:rw
+            - ./configs/configure.sh:/configure.sh:ro
+            - ./configs/vhs.frontend.env:/tmp/vhs.frontend.env:ro
+        command: bash /configure.sh
+        networks:
+            - vhs
+        environment:
+            TZ: "Asia/Taipei"
+
+    api:
+        image: supersonictw/virtual_host-server
+        container_name: vhs-api
+        volumes:
+            - ./public:/storage:rw
+            - ./logs:/logs:rw
+            - ./configs/vhs.backend.env:/app/.env:ro
+        networks:
+            - vhs
+        environment:
+            TZ: "Asia/Taipei"
+        restart: always
+
+    gateway:
+        image: nginx
+        container_name: vhs-gateway
+        volumes:
+            - ./public:/var/www/html:rw
+            - ./public/manage:/var/www/html/manage:ro
+            - ./configs/nginx/conf.d:/etc/nginx/conf.d:ro
+        ports:
+            - 127.0.0.1:8081:80
+        networks:
+            - vhs
+        environment:
+            TZ: "Asia/Taipei"
+        restart: always
+
+networks:
+    vhs:
+        driver: bridge
+
