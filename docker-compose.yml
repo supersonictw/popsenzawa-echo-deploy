@@ -34,7 +34,7 @@ services:
             - ./public/manage:/var/www/html/manage:ro
             - ./configs/nginx/conf.d:/etc/nginx/conf.d:ro
         ports:
-            - 127.0.0.1:8081:80
+            - 127.0.0.1:80:80
         networks:
             - vhs
         environment:
