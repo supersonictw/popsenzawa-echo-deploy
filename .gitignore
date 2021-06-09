@@ -1,3 +1,6 @@
 logs/
 public/*
+manage/
+vhs.*.env
+!vhs.*.sample.env
 !public/index.html

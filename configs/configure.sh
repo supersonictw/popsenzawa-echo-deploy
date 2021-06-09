@@ -12,4 +12,3 @@ npm run generate
 shopt -s dotglob
 rm -rf /tmp/build/*
 mv dist/* /tmp/build/
-
