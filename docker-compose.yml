@@ -29,6 +29,8 @@ services:
   php-engine:
     image: php:7.4-fpm-alpine
     container_name: vhs-php
+    volumes:
+      - ./public:/var/www/html:ro
     networks:
       - vhs
     environment:
@@ -39,7 +41,7 @@ services:
     image: nginx
     container_name: vhs-gateway
     volumes:
-      - ./public:/var/www/html:rw
+      - ./public:/var/www/html:ro
       - ./public/manage:/var/www/html/manage:ro
       - ./configs/nginx/conf.d:/etc/nginx/conf.d:ro
     ports:
