@@ -35,7 +35,7 @@ services:
       - ./initialize_db.sh:/initialize.sh:ro
     environment:
       MARIADB_USER: cat
-      MARIADB_PASS: ""
+      MARIADB_PASSWORD: ""
       MARIADB_DATABASE: popcat
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
 
