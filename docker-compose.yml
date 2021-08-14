@@ -10,13 +10,13 @@ services:
       REFRESH_INTERVAL: 10
       REFRESH_DELAY: 1
       REDIS_ADDRESS: localhost:6379
-      REDIS_PASSWORD:
+      REDIS_PASSWORD: ""
       REDIS_DBNAME: 0
       REDIS_NAMESPACE_POP: pop
       REDIS_NAMESPACE_GEO: geo
       MYSQL_DSN: cat:@tcp(mariadb)/popcat
-      RECAPTCHA_SECRET:
-      JWT_SECRET:
+      RECAPTCHA_SECRET: ""
+      JWT_SECRET: ""
       JWT_EXPIRED: 20
       POP_LIMIT: 800
     ports:
