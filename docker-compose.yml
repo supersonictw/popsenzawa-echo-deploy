@@ -29,11 +29,13 @@ services:
       RATE_LIMIT: 800
     ports:
       - 127.0.0.1:8013:8013
+    restart: always
   redis:
     image: redis
     container_name: redis
     networks:
       - echo
+    restart: always
   mariadb:
     image: mariadb
     container_name: mariadb
@@ -47,6 +49,7 @@ services:
       MARIADB_PASSWORD: example
       MARIADB_DATABASE: popcat
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
+    restart: always
 
 volumes:
   database:
