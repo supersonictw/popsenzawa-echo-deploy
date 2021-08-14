@@ -6,7 +6,18 @@ services:
     networks:
       - echo
     environment:
-      TZ: "Asia/Taipei"
+      TZ: Asia/Taipei
+      REFRESH_INTERVAL: 10
+      REFRESH_DELAY: 1
+      REDIS_HOST: redis
+      REDIS_PASS: ""
+      REDIS_DBNAME: 0
+      REDIS_NAMESPACE_POP: "pop"
+      REDIS_NAMESPACE_GEO: "geo"
+      MYSQL_DSN: "cat:@tcp(mariadb)/popcat"
+      RECAPTCHA_SECRET: ""
+      JWT_SECRET: ""
+      JWT_EXPIRED: "20"
   redis:
     image: redis
     container_name: redis
@@ -17,6 +28,10 @@ services:
     container_name: mariadb
     networks:
       - echo
+    environment:
+      MARIADB_USER: cat
+      MARIADB_PASS: ""
+      MARIADB_DATABASE: popcat
 
 networks:
   echo:
