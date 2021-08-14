@@ -14,11 +14,12 @@ services:
       REDIS_DBNAME: 0
       REDIS_NAMESPACE_POP: pop
       REDIS_NAMESPACE_GEO: geo
-      MYSQL_DSN: cat:@tcp(mariadb)/popcat
+      MYSQL_DSN: cat:example@tcp(mariadb)/popcat
       RECAPTCHA_SECRET: ""
       JWT_SECRET: ""
       JWT_EXPIRED: 20
       POP_LIMIT: 800
+      RATE_LIMIT: 800
     ports:
       - 127.0.0.1:8013:8013
   redis:
@@ -32,12 +33,17 @@ services:
     networks:
       - echo
     volumes:
+      - database:/var/lib/mysql
       - ./initialize_db.sh:/initialize.sh:ro
     environment:
       MARIADB_USER: cat
-      MARIADB_PASSWORD: ""
+      MARIADB_PASSWORD: example
       MARIADB_DATABASE: popcat
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
+
+volumes:
+  database:
+    driver: local
 
 networks:
   echo:
