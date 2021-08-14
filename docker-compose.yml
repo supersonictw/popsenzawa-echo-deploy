@@ -18,6 +18,8 @@ services:
       RECAPTCHA_SECRET: ""
       JWT_SECRET: ""
       JWT_EXPIRED: "20"
+    ports:
+      - 127.0.0.1:8013:8013
   redis:
     image: redis
     container_name: redis
@@ -32,6 +34,7 @@ services:
       MARIADB_USER: cat
       MARIADB_PASS: ""
       MARIADB_DATABASE: popcat
+      MARIADB_RANDOM_ROOT_PASSWORD: true
 
 networks:
   echo:
