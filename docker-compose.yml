@@ -9,7 +9,7 @@ services:
       TZ: Asia/Taipei
       REFRESH_INTERVAL: 10
       REFRESH_DELAY: 1
-      REDIS_ADDRESS: localhost:6379
+      REDIS_ADDRESS: redis:6379
       REDIS_PASSWORD: ""
       REDIS_DBNAME: 0
       REDIS_NAMESPACE_POP: pop
