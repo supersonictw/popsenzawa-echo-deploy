@@ -31,7 +31,7 @@ services:
     container_name: mariadb
     networks:
       - echo
-    volume:
+    volumes:
       - ./initialize_db.sh:/initialize.sh:ro
     environment:
       MARIADB_USER: cat
