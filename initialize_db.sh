@@ -9,5 +9,5 @@ fi
 
 ## Start
 curl https://raw.githubusercontent.com/supersonictw/popcat-echo/main/initialize.sql -o $TEMP_SQL
-mysql -u$MARIADB_USER -p$MARIADB_PASS $MARIADB_DATABASE <$TEMP_SQL
+mysql -u$MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE <$TEMP_SQL
 rm $TEMP_SQL
