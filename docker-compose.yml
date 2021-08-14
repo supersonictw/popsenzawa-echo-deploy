@@ -3,6 +3,9 @@ services:
   echo:
     image: supersonictw/popcat-echo
     container_name: echo
+    depends_on:
+      - redis
+      - mariadb
     networks:
       - echo
     environment:
