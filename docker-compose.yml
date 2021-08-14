@@ -14,6 +14,7 @@ services:
       REDIS_DBNAME: 0
       REDIS_NAMESPACE_POP: pop
       REDIS_NAMESPACE_GEO: geo
+      REDIS_NAMESPACE_RATE: rate
       MYSQL_DSN: cat:example@tcp(mariadb)/popcat
       RECAPTCHA_SECRET: ""
       JWT_SECRET: ""
