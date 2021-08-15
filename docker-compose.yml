@@ -27,6 +27,7 @@ services:
       JWT_EXPIRED: 20
       POP_LIMIT: 800
       RATE_LIMIT: 800
+      FORCE_FIX_RATE: "no"
     ports:
       - 127.0.0.1:8013:8013
     restart: always
