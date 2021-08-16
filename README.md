@@ -1,3 +1,5 @@
-# PopCat Echo
+# PopCat Echo - Deploy Scripts
 
-The server reproduce of https://popcat.click with improvement.
+The deploy scripts for popcat-echo(<https://github.com/supersonictw/popcat-echo>).
+
+> Powered by [docker-compose](https://docs.docker.com/compose/)
