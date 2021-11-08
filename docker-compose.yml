@@ -11,8 +11,8 @@ services:
     environment:
       TZ: Asia/Taipei
       CORS_SUPPORT: "no"
-      FRONTEND_HOSTNAME: ""
       FRONTEND_SSL: "no"
+      FRONTEND_HOSTNAME: ""
       REFRESH_INTERVAL: 10
       REFRESH_DELAY: 1
       REDIS_ADDRESS: redis:6379
@@ -22,11 +22,13 @@ services:
       REDIS_NAMESPACE_GEO: geo
       REDIS_NAMESPACE_RATE: rate
       MYSQL_DSN: cat:example@tcp(mariadb)/popcat
-      RECAPTCHA_SECRET: ""
-      JWT_SECRET: ""
-      JWT_EXPIRED: 20
-      POP_LIMIT: 800
-      RATE_LIMIT: 800
+      POP_JWT_SECRET: ""
+      POP_JWT_EXPIRED: 20
+      POP_RECAPTCHA_SECRET: ""
+      POP_LIMIT_HTTP_DURATION: 0
+      POP_LIMIT_HTTP_REQUESTS: 1
+      POP_LIMIT_REDIS_DURATION: 0
+      POP_LIMIT_REDIS_POP_COUNT: 800
       FORCE_FIX_RATE: "no"
     ports:
       - 127.0.0.1:8013:8013
