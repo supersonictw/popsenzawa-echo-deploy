@@ -1,0 +1,37 @@
+[server]
+address = "0.0.0.0:8000"
+
+[cors]
+allow_origins = ["http://localhost:5173"]
+
+[broker]
+ping_duration = 5
+
+[upload]
+prefetch_limit = 1000
+poll_duration = 5
+wave_duration = 1
+
+[gorm]
+mysql_dsn = "popsenzawa_echo:popsenzawa_echo@tcp(popsenzawa-mariadb:3306)/popsenzawa_echo"
+
+[ipgeo]
+database_path = "/workplace/country.mmdb"
+
+[redis]
+network = "tcp"
+address = "popsenzawa-redis:6379"
+database = 0
+
+[jwt]
+secret = "popsenzawa_echo"
+
+[recaptcha]
+secret = "popsenzawa_echo"
+
+[rate_limit]
+max_request_per_second = 10
+default_expiration_ttl = 10
+
+[count]
+max_pops_append_per_visitor = 800

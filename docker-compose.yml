@@ -1,56 +1,39 @@
 version: "2.2"
 services:
   echo:
-    image: supersonictw/popcat-echo
-    container_name: echo
+    image: ghcr.io/supersonictw/popsenzawa-echo:main
+    container_name: popsenzawa-echo
     depends_on:
       - redis
       - mariadb
     networks:
-      - echo
-    environment:
-      TZ: Asia/Taipei
-      CORS_SUPPORT: "no"
-      FRONTEND_SSL: "no"
-      FRONTEND_HOSTNAME: ""
-      REFRESH_INTERVAL: 10
-      REFRESH_DELAY: 1
-      REDIS_ADDRESS: redis:6379
-      REDIS_PASSWORD: ""
-      REDIS_DBNAME: 0
-      REDIS_NAMESPACE_POP: pop
-      REDIS_NAMESPACE_GEO: geo
-      REDIS_NAMESPACE_RATE: rate
-      MYSQL_DSN: cat:example@tcp(mariadb)/popcat
-      POP_JWT_SECRET: ""
-      POP_JWT_EXPIRED: 20
-      POP_RECAPTCHA_SECRET: ""
-      POP_LIMIT_HTTP_DURATION: 0
-      POP_LIMIT_HTTP_REQUESTS: 1
-      POP_LIMIT_REDIS_DURATION: 0
-      POP_LIMIT_REDIS_POP_COUNT: 800
-      FORCE_FIX_RATE: "no"
-    ports:
-      - 127.0.0.1:8013:8013
-    restart: always
-  redis:
-    image: redis
-    container_name: redis
-    networks:
-      - echo
-    restart: always
-  mariadb:
-    image: mariadb
-    container_name: mariadb
-    networks:
-      - echo
+      - popsenzawa
     volumes:
-      - database:/var/lib/mysql
+      - ./config.toml:/workplace/config.toml:ro
+      - ./country.mmdb:/workplace/country.mmdb:ro
+    ports:
+      - 127.0.0.1:8000:8000
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: popsenzawa-redis
+    networks:
+      - popsenzawa
+    restart: always
+
+  mariadb:
+    image: mariadb:lts
+    container_name: popsenzawa-mariadb
+    networks:
+      - popsenzawa
+    volumes:
+      - database:/var/lib/mysql:rw
       - ./initialize_db.sh:/initialize.sh:ro
     environment:
-      MARIADB_USER: cat
-      MARIADB_PASSWORD: example
-      MARIADB_DATABASE: popcat
+      MARIADB_USER: "popsenzawa_echo"
+      MARIADB_PASSWORD: "popsenzawa_echo"
+      MARIADB_DATABASE: "popsenzawa_echo"
       MARIADB_RANDOM_ROOT_PASSWORD: "true"
     restart: always
 
@@ -59,5 +42,5 @@ volumes:
     driver: local
 
 networks:
-  echo:
+  popsenzawa:
     driver: bridge
